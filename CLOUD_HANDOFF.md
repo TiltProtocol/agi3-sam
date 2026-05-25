@@ -13,15 +13,40 @@ To continue with the lid closed, use **Cursor Cloud Agent** (Ultra):
 
 ## Repository
 
-**https://github.com/TiltProtocol/agi3-sam** (public, default branch `main`, also has `master`)
+## Repository mirrors
 
-### If Cloud Agent says "Could not resolve default branch"
+Use the repo that matches **the GitHub account connected in Cursor Settings → GitHub**:
 
-1. **GitHub App on org** — [github.com/apps/cursor](https://github.com/apps/cursor) → Install on **TiltProtocol** → grant access to `agi3-sam` (or all repos).
-2. **Cursor Settings → GitHub** — reconnect integration; same GitHub user as `TiltProtocol`.
-3. **Privacy Mode** — must be **Privacy Mode** (not "Privacy Mode Legacy"); legacy blocks cloud agents.
-4. **Pick branch explicitly** — use `main` (not blank/default).
-5. **Repo URL** — paste `https://github.com/TiltProtocol/agi3-sam` instead of `TiltProtocol/agi3-sam` if shorthand fails.
+| Account | URL | Branch |
+|---------|-----|--------|
+| TiltProtocol | https://github.com/TiltProtocol/agi3-sam | `main` |
+| rontoTech | https://github.com/rontoTech/agi3-sam | `main` |
+
+Both are public and identical. If one fails branch resolution, try the other.
+
+### If Cloud Agent still says "Could not resolve default branch"
+
+This is a **known Cursor backend bug** (GitHub App token). Repo-side settings are correct.
+
+**Fix A — match GitHub account**
+
+1. Cursor **Settings → GitHub** → note which account is connected (TiltProtocol vs rontoTech).
+2. Cloud Agent → use the **matching** repo URL above.
+3. Set branch explicitly to **`main`** (do not leave blank).
+
+**Fix B — Privacy Mode**
+
+Settings → Privacy → must be **Privacy Mode**, not **Privacy Mode (Legacy)**.
+
+**Fix C — GitHub Actions (works with laptop closed, no Cursor Cloud Agent)**
+
+1. Open https://github.com/TiltProtocol/agi3-sam/actions (or rontoTech mirror).
+2. Run workflow **SAM ls20 solver** → **Run workflow**.
+3. Download artifact `sam-ls20-results` (`ls20_plans.json`, run summary).
+
+**Fix D — Cursor support**
+
+Email support with Request ID from the failed run URL on [cursor.com/agents](https://cursor.com/agents).
 
 Cloud agent: clone or open this repo in Cursor, then run the prompt below.
 
