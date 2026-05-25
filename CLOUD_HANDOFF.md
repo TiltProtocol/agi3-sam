@@ -13,7 +13,15 @@ To continue with the lid closed, use **Cursor Cloud Agent** (Ultra):
 
 ## Repository
 
-**https://github.com/TiltProtocol/agi3-sam** (private, `main` branch)
+**https://github.com/TiltProtocol/agi3-sam** (public, default branch `main`, also has `master`)
+
+### If Cloud Agent says "Could not resolve default branch"
+
+1. **GitHub App on org** — [github.com/apps/cursor](https://github.com/apps/cursor) → Install on **TiltProtocol** → grant access to `agi3-sam` (or all repos).
+2. **Cursor Settings → GitHub** — reconnect integration; same GitHub user as `TiltProtocol`.
+3. **Privacy Mode** — must be **Privacy Mode** (not "Privacy Mode Legacy"); legacy blocks cloud agents.
+4. **Pick branch explicitly** — use `main` (not blank/default).
+5. **Repo URL** — paste `https://github.com/TiltProtocol/agi3-sam` instead of `TiltProtocol/agi3-sam` if shorthand fails.
 
 Cloud agent: clone or open this repo in Cursor, then run the prompt below.
 
