@@ -11,17 +11,11 @@ To continue with the lid closed, use **Cursor Cloud Agent** (Ultra):
 3. Paste the prompt below.
 4. Cloud agents run on Cursor infrastructure and keep going when your Mac sleeps.
 
-There is **no git repo** here yet — initialize and push first if you want cloud pickup:
+## Repository
 
-```bash
-cd /Users/adilbek/Desktop/agi3
-git init
-git add sam scripts tests environment_files answers.md CLOUD_HANDOFF.md
-git commit -m "SAM ls20 scaffold and solver handoff"
-# create GitHub repo, then:
-git remote add origin <your-url>
-git push -u origin main
-```
+**https://github.com/TiltProtocol/agi3-sam** (private, `main` branch)
+
+Cloud agent: clone or open this repo in Cursor, then run the prompt below.
 
 ## Acceptance criteria
 
