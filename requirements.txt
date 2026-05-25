@@ -1,0 +1,6 @@
+arc-agi>=0.9.8
+kaggle>=2.1.2
+torch>=2.0.0
+numpy>=1.24.0,<2.0.0,<2.0.0
+pyyaml>=6.0
+pytest>=7.0.0

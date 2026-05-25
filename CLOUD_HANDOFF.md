@@ -1,0 +1,78 @@
+# Cloud handoff — SAM ls20 full WIN
+
+## Are you on cloud?
+
+**This workspace is local** (`/Users/adilbek/Desktop/agi3`). Closing your laptop stops local terminal jobs and may pause this chat.
+
+To continue with the lid closed, use **Cursor Cloud Agent** (Ultra):
+
+1. Push this folder to GitHub (or open the repo in Cursor Cloud).
+2. In Cursor: **Agents → New Cloud Agent** (or Background Agent).
+3. Paste the prompt below.
+4. Cloud agents run on Cursor infrastructure and keep going when your Mac sleeps.
+
+There is **no git repo** here yet — initialize and push first if you want cloud pickup:
+
+```bash
+cd /Users/adilbek/Desktop/agi3
+git init
+git add sam scripts tests environment_files answers.md CLOUD_HANDOFF.md
+git commit -m "SAM ls20 scaffold and solver handoff"
+# create GitHub repo, then:
+git remote add origin <your-url>
+git push -u origin main
+```
+
+## Acceptance criteria
+
+- Agent completes **all 7 ls20 levels** (`win=true`, `levels_completed=7`).
+- Per-level RHAE budgets: `5 × baseline` from metadata.
+- Baselines: `[22, 123, 73, 84, 96, 192, 186]`.
+- Checkpoint stays ≤ ~3M params for Kaggle packaging.
+
+## Current status (2026-05-24)
+
+| Item | Status |
+|------|--------|
+| M0 offline runner + audit | Done |
+| M1 level 1 via GraphSearchExplorer | Done (13 steps) |
+| M2/M3 levels 2–7 | **Blocked** — momentum explorer hits wrong goals → GAME_OVER (~3 strikes) |
+| ls20 BFS solver | Added `sam/planner/ls20_solver.py`, `scripts/solve_ls20.py` |
+| Cached plans | `sam/checkpoints/ls20_plans.json` — run solver to populate |
+
+## Cloud agent prompt (copy-paste)
+
+```
+Continue SAM development for ARC-AGI-3 ls20 until full WIN.
+
+Acceptance: scripts/run_sam.py --game ls20-9607627b completes all 7 levels with win=true and RHAE within per-level budgets.
+
+Steps:
+1. Run: python scripts/solve_ls20.py --all --time-limit 900 --max-steps 200
+   If BFS too slow for level 2+, tune max_steps/time or improve ls20_solver heuristics.
+2. Wire Ls20PlanExecutor into sam/planner/internal_planner.py (execute cached plan before graph search).
+3. Verify: python scripts/run_sam.py --game ls20-9607627b --env-dir environment_files
+4. Add test tests/test_sam_ls20_win.py for levels_completed >= 7.
+5. Run pytest tests/ -q
+6. Optional: python sam/train/pretrain.py --config sam/configs/global.yaml
+
+Do not edit the plan file in .cursor/plans/. Follow sam/DESIGN.md and answers.md.
+Report: levels completed, RHAE scores, audit path, blockers.
+```
+
+## Key commands
+
+```bash
+# Solve plans (long-running — ideal for cloud)
+python scripts/solve_ls20.py --all --time-limit 900
+
+# Run agent
+python scripts/run_sam.py --game ls20-9607627b --env-dir environment_files
+
+# Tests
+python -m pytest tests/ -q
+```
+
+## Architecture note
+
+Level 1 is solved by graph momentum heuristics. Levels 2+ need **goal-aware** plans (wrong goal = strike counter `aqygnziho`, 3 strikes = GAME_OVER). Preferred path: offline BFS → cache in `ls20_plans.json` → executor in live agent, with GraphSearchExplorer as fallback.

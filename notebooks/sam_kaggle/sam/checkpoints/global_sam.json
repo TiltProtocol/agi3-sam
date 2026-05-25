@@ -1,0 +1,7 @@
+{
+  "transitions": 808,
+  "loss": 9.1522570073721e-06,
+  "params": 1038193,
+  "checkpoint": "sam/checkpoints/global_sam.pt",
+  "games": 25
+}

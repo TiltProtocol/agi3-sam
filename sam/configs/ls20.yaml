@@ -1,0 +1,24 @@
+# SAM ls20 prototype configuration
+game_id: ls20-9607627b
+environments_dir: environment_files
+latent_dim: 128
+max_depth: 20
+planning_ms: 50.0
+max_investigation: 8
+
+# Action budget: 5x baseline from metadata (see sam/config.py)
+budget_multiplier: 5
+
+# Growth
+max_skill_modules: 8
+max_total_params: 3000000
+
+# Learning
+micro_lr: 0.0001
+meso_steps: 100
+
+# Milestones
+targets:
+  m1_level: 1
+  m2_levels: 3
+  m3_win: true

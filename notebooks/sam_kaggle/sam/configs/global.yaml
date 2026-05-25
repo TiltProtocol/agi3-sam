@@ -1,0 +1,41 @@
+# Global SAM pretrain configuration (25 public environments)
+environments_dir: environment_files
+latent_dim: 128
+batch_size: 32
+epochs_self_supervised: 3
+epochs_rl: 2
+learning_rate: 0.0001
+checkpoint_dir: sam/checkpoints
+recordings_dir: sam/recordings
+
+games:
+  - ls20-9607627b
+  - ft09-0d8bbf25
+  - vc33-5430563c
+  - cn04-2fe56bfb
+  - dc22-fdcac232
+  - m0r0-492f87ba
+  - tu93-0768757b
+  - ar25-0c556536
+  - bp35-0a0ad940
+  - cd82-fb555c5d
+  - g50t-5849a774
+  - ka59-38d34dbb
+  - lf52-271a04aa
+  - lp85-305b61c3
+  - r11l-495a7899
+  - re86-8af5384d
+  - s5i5-18d95033
+  - sb26-7fbdac44
+  - sc25-635fd71a
+  - sk48-d8078629
+  - sp80-589a99af
+  - su15-1944f8ab
+  - tn36-ef4dde99
+  - tr87-cd924810
+  - wa30-ee6fef47
+
+transfer_eval_games:
+  - ft09-0d8bbf25
+  - vc33-5430563c
+  - cn04-2fe56bfb
